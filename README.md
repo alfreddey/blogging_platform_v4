@@ -14,6 +14,7 @@ A production-ready Spring Boot backend that exposes **REST** and **GraphQL** API
 7. [Caching Configuration](#caching-configuration)
 8. [API Documentation & Testing](#api-documentation--testing)
 9. [Running the Application](#running-the-application)
+10. [Security Note: CORS vs CSRF](#security-note-cors-vs-csrf)
 10. [Contribution](#contribution)
 11. [License](#license)
 12. [Contact](#contact)
@@ -229,6 +230,12 @@ mvn spring-boot:run
 ```
 
 Or run directly from your IDE.
+
+---
+
+## Security Note: CORS vs CSRF
+
+CORS and CSRF solve different problems even though they both relate to browser security. **CORS** controls which external origins are allowed to make requests to this backend, while **CSRF** ensures that state-changing requests actually come from the intended user interaction. In this project, CORS is configured in `SecurityConfig` using `cors(cors -> cors.configurationSource(corsConfigurationSource()))`, where allowed origins, headers (including `X-CSRF-TOKEN`), and credentials are explicitly defined to permit trusted frontends. CSRF protection is enabled separately using `csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))`, which generates a token stored in a cookie and requires that token to be sent back with POST requests like `/form`. In simple terms, CORS decides *who can talk to the API*, while CSRF verifies *who actually initiated the request*, preventing malicious sites from submitting requests on behalf of authenticated users.
 
 ---
 
