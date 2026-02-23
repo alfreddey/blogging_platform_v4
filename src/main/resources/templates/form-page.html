@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CSRF Test Form</title>
+</head>
+<body>
+
+<h2>CSRF Protection Test</h2>
+
+<div th:if="${message}" style="color:green;">
+    <strong th:text="${message}"></strong>
+</div>
+
+<form th:action="@{/form}" th:object="${form}" method="post">
+
+    <!-- Include CSRF token so Spring Security will accept the POST -->
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    <label>Name:
+        <input type="text" th:field="*{name}" required>
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+
+<p><small>Login first with user / password</small></p>
+
+</body>
+</html>
