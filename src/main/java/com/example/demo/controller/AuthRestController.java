@@ -6,7 +6,6 @@ import com.example.demo.model.User;
 import com.example.demo.repository.interfaces.UserRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.TokenBlacklistService;
-import com.example.demo.utils.SessionStore;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
