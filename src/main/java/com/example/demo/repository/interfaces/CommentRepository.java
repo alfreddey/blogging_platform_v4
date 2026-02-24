@@ -1,6 +1,6 @@
 package com.example.demo.repository.interfaces;
 
-import com.example.demo.model.entity.Comment;
+import com.example.demo.model.Comment;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
