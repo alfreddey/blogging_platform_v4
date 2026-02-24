@@ -2,6 +2,7 @@ package com.example.demo.security;
 
 import com.example.demo.repository.interfaces.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,10 +19,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         var user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        var authorities = user.getRoles().stream()
+                .map(SimpleGrantedAuthority::new)
+                .toList();
+
         return User
                 .withUsername(user.getEmail())
                 .password(user.getPassword())
-                .authorities(Collections.emptyList())
+                .authorities(authorities)
                 .build();
     }
 }

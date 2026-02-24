@@ -7,7 +7,7 @@ import com.example.demo.dto.ApiResponse;
 import com.example.demo.dto.UserRequest;
 import com.example.demo.dto.UserResponse;
 import com.example.demo.mapper.Mapper;
-import com.example.demo.model.entity.User;
+import com.example.demo.model.User;
 import com.example.demo.service.interfaces.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

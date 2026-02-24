@@ -1,8 +1,10 @@
-package com.example.demo.model.entity;
+package com.example.demo.model;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 @Document(collection = "users")
 @Data
@@ -11,4 +13,5 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private List<String> roles;
 }

@@ -1,9 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.UserRequest;
-import com.example.demo.model.entity.User;
-import org.bson.Document;
-import org.bson.types.ObjectId;
+import com.example.demo.model.User;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.entity.Post;
+import com.example.demo.model.Post;
 import com.example.demo.repository.interfaces.PostRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

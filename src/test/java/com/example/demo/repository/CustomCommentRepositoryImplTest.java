@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-import com.example.demo.model.entity.Comment;
-import com.example.demo.model.entity.Post;
+import com.example.demo.model.Comment;
+import com.example.demo.model.Post;
 import com.example.demo.repository.interfaces.CommentRepositoryImpl;
 import org.bson.Document;
 import org.junit.jupiter.api.Test;

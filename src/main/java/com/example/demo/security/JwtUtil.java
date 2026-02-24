@@ -1,6 +1,8 @@
 package com.example.demo.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,30 +27,49 @@ public class JwtUtil {
         this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String generateToken(String email) {
-        var now = System.currentTimeMillis();
+    public String generateToken(String email, String role) {
+        long now = System.currentTimeMillis();
 
-        return Jwts.builder()
+        var builder = Jwts.builder()
                 .subject(email)
+                .claim("role", role)
                 .issuedAt(new Date(now))
                 .expiration(new Date(now + jwtExpirationMs))
-                .signWith(key)
-                .compact();
+                .signWith(key);
+
+        return builder.compact();
+    }
+
+    public String generateToken(String email) {
+        return generateToken(email, "ROLE_USER");
     }
 
     public String getUserFromToken(String token) {
-        return Jwts.parser().verifyWith(key).build()
-                .parseSignedClaims(token)
-                .getPayload()
-                .getSubject();
+        return parseClaims(token).getSubject();
+    }
+
+    public String getRoleFromToken(String token) {
+        return parseClaims(token).get("role", String.class);
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
+            parseClaims(token);
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
+
+    private Claims parseClaims(String token) {
+        return Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
+    public Date getExpirationDateFromToken(String token) {
+        return parseClaims(token).get("exp", Date.class);
     }
 }

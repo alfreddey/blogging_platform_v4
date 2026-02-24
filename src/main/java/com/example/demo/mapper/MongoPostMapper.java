@@ -2,7 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.dto.PostRequest;
 import com.example.demo.dto.PostResponse;
-import com.example.demo.model.entity.Post;
+import com.example.demo.model.Post;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;

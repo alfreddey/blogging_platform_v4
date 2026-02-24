@@ -2,7 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.dto.CommentRequest;
 import com.example.demo.dto.CommentResponse;
-import com.example.demo.model.entity.Comment;
+import com.example.demo.model.Comment;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;
 

@@ -1,9 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.PostResponse;
-import com.example.demo.model.entity.Post;
-import org.bson.Document;
-import org.bson.types.ObjectId;
+import com.example.demo.model.Post;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;

@@ -2,8 +2,11 @@ package com.example.demo.mapper;
 
 import com.example.demo.dto.UserRequest;
 import com.example.demo.dto.UserResponse;
-import com.example.demo.model.entity.User;
+import com.example.demo.model.User;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class MongoUserMapper implements Mapper<User, UserResponse, UserRequest> {
@@ -15,25 +18,33 @@ public class MongoUserMapper implements Mapper<User, UserResponse, UserRequest> 
 
         var userResponse = new UserResponse();
 
-        userResponse.id = user.getId();
-        userResponse.email = user.getEmail();
-        userResponse.name = user.getName();
+        userResponse.setEmail(user.getEmail());
+        userResponse.setId(user.getId());
+        userResponse.setName(user.getName());
+        userResponse.setRoles(user.getRoles());
 
         return userResponse;
     }
 
     @Override
     public User toEntity(UserRequest request) {
-        return request == null ? null : map(null, request.name, request.email, request.password);
+        List<String> roles = new ArrayList<>();
+
+        if (request.getRoles() != null) {
+            roles = request.getRoles();
+        }
+
+        return request == null ? null : map(null, request.name, request.email, request.password, roles);
     }
 
-    private static User map(String id, String name, String email, String password) {
+    private static User map(String id, String name, String email, String password, List<String> roles) {
         var user = new User();
 
         user.setId(id);
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
+        user.setRoles(roles);
 
         return user;
     }
