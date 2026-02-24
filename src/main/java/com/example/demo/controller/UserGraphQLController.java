@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.UserRequest;
 import com.example.demo.dto.UserResponse;
 import com.example.demo.mapper.Mapper;
-import com.example.demo.model.entity.User;
+import com.example.demo.model.User;
 import com.example.demo.service.interfaces.UserService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;

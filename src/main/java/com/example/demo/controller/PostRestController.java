@@ -4,13 +4,14 @@ import com.example.demo.dto.ApiResponse;
 import com.example.demo.dto.PostRequest;
 import com.example.demo.dto.PostResponse;
 import com.example.demo.mapper.Mapper;
-import com.example.demo.model.entity.Post;
+import com.example.demo.model.Post;
 import com.example.demo.service.interfaces.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +48,7 @@ public class PostRestController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Post not found")
     })
     @GetMapping("/{postId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ApiResponse<PostResponse> getById(@Valid @PathVariable String postId) {
         return new ApiResponse<>(HttpStatus.OK, "Post retrieved successfully", postMapper.toResponse(postService.getById(postId)));
     }

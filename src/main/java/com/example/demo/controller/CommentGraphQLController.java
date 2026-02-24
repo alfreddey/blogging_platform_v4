@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.CommentRequest;
 import com.example.demo.dto.CommentResponse;
 import com.example.demo.mapper.Mapper;
-import com.example.demo.model.entity.Comment;
+import com.example.demo.model.Comment;
 import com.example.demo.service.interfaces.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;

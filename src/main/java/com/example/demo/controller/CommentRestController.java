@@ -4,7 +4,7 @@ import com.example.demo.dto.ApiResponse;
 import com.example.demo.dto.CommentRequest;
 import com.example.demo.dto.CommentResponse;
 import com.example.demo.mapper.Mapper;
-import com.example.demo.model.entity.Comment;
+import com.example.demo.model.Comment;
 import com.example.demo.service.interfaces.CommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
