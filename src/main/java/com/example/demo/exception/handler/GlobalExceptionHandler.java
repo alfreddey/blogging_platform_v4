@@ -1,4 +1,4 @@
-package com.example.demo.exception_handler;
+package com.example.demo.exceptionhandler;
 
 import com.example.demo.dto.ApiResponse;
 import com.example.demo.exception.InvalidIdException;
@@ -24,6 +24,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException e) {
         return buildResponse(HttpStatus.BAD_REQUEST, e.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleRuntimeException(RuntimeException e) {
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred: " + e.getMessage());
     }
 
     private ResponseEntity<ApiResponse<Void>> buildResponse(HttpStatus status, String message) {
