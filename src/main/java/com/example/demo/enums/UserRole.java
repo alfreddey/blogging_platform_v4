@@ -1,7 +1,6 @@
 package com.example.demo.enums;
 
 public enum UserRole {
-    ADMIN,
-    AUTHOR,
-    READER
+    ROLE_USER,
+    ROLE_ADMIN
 }

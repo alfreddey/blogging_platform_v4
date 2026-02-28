@@ -1,6 +1,6 @@
-package com.example.demo.repository.interfaces.custom;
+package com.example.demo.repository.custom;
 
-import com.example.demo.model.User;
+import com.example.demo.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;

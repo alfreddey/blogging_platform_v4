@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.enums.UserRole;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -26,7 +27,7 @@ public class JwtUtil {
         this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String generateToken(String email, String role) {
+    public String generateToken(String email, UserRole role) {
         long now = System.currentTimeMillis();
 
         var builder = Jwts.builder()
@@ -40,7 +41,7 @@ public class JwtUtil {
     }
 
     public String generateToken(String email) {
-        return generateToken(email, "ROLE_USER");
+        return generateToken(email, UserRole.ROLE_USER);
     }
 
     public String getUserFromToken(String token) {

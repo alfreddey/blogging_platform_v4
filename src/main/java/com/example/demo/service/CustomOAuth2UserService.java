@@ -1,8 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.model.User;
+import com.example.demo.entity.User;
+import com.example.demo.enums.UserRole;
 import com.example.demo.principal.CustomOAuth2User;
-import com.example.demo.repository.interfaces.UserRepository;
+import com.example.demo.repository.UserRepository;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,7 @@ public class CustomOAuth2UserService extends OidcUserService {
                 .orElseGet(() -> createNewUser(email, name));
 
         if (user.getRoles() == null || user.getRoles().isEmpty()) {
-            user.setRoles(List.of("ROLE_USER"));
+            user.setRoles(List.of(UserRole.ROLE_USER));
             userRepository.save(user);
         }
 

@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.*;
 import com.example.demo.mapper.Mapper;
-import com.example.demo.model.User;
+import com.example.demo.entity.User;
 import com.example.demo.service.interfaces.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

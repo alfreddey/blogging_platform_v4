@@ -1,6 +1,6 @@
 package com.example.demo.service.interfaces;
 
-import com.example.demo.model.Post;
+import com.example.demo.entity.Post;
 
 import java.util.List;
 

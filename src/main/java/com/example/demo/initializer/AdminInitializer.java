@@ -1,7 +1,8 @@
 package com.example.demo.initializer;
 
-import com.example.demo.model.User;
-import com.example.demo.repository.interfaces.UserRepository;
+import com.example.demo.entity.User;
+import com.example.demo.enums.UserRole;
+import com.example.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,7 @@ public class AdminInitializer implements CommandLineRunner {
             admin.setName("System Admin");
 
             if (admin.getRoles() == null) {
-                admin.setRoles(List.of("ROLE_ADMIN", "ROLE_USER"));
+                admin.setRoles(List.of(UserRole.ROLE_USER, UserRole.ROLE_ADMIN));
             }
 
             userRepository.save(admin);

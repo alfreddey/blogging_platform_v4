@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.PostRequest;
 import com.example.demo.dto.PostResponse;
 import com.example.demo.mapper.Mapper;
-import com.example.demo.model.Post;
+import com.example.demo.entity.Post;
 import com.example.demo.service.interfaces.PostService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;

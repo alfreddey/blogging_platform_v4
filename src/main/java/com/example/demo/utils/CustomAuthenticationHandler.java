@@ -10,6 +10,7 @@
     import org.slf4j.LoggerFactory;
     import org.springframework.http.HttpHeaders;
     import org.springframework.http.ResponseCookie;
+    import org.springframework.security.core.AuthenticationException;
     import org.springframework.security.web.authentication.AuthenticationFailureHandler;
     import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
     import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@
 
     @Component
     @AllArgsConstructor
-    public class CustomAuthenticationHandler implements AuthenticationSuccessHandler {
+    public class CustomAuthenticationHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
 
         private final JwtUtil jwtUtils;
         private SessionStore sessionStore;
@@ -52,11 +53,10 @@
             response.sendRedirect("/profile");
         }
 
-        public AuthenticationFailureHandler failureHandler() {
-            return (request, response, exception) -> {
-                String email = request.getParameter("email");
-                logger.warn("UI login FAILED for user: {}. Reason: {}", email, exception.getMessage());
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication Failed: " + exception.getMessage());
-            };
+        @Override
+        public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+            String email = request.getParameter("email");
+            logger.warn("UI login FAILED for user: {}. Reason: {}", email, exception.getMessage());
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication Failed: " + exception.getMessage());
         }
     }

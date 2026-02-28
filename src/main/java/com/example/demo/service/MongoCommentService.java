@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Comment;
-import com.example.demo.repository.interfaces.CommentRepository;
+import com.example.demo.entity.Comment;
+import com.example.demo.repository.CommentRepository;
 import com.example.demo.service.interfaces.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

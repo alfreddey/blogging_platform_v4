@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Post;
-import com.example.demo.repository.interfaces.PostRepository;
+import com.example.demo.entity.Post;
+import com.example.demo.repository.PostRepository;
 import com.example.demo.service.interfaces.PostService;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;

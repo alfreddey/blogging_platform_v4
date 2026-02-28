@@ -2,7 +2,8 @@ package com.example.demo.mapper;
 
 import com.example.demo.dto.UserRequest;
 import com.example.demo.dto.UserResponse;
-import com.example.demo.model.User;
+import com.example.demo.entity.User;
+import com.example.demo.enums.UserRole;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class MongoUserMapper implements Mapper<User, UserResponse, UserRequest> 
 
     @Override
     public User toEntity(UserRequest request) {
-        List<String> roles = new ArrayList<>();
+        List<UserRole> roles = new ArrayList<>();
 
         if (request.getRoles() != null) {
             roles = request.getRoles();
@@ -37,7 +38,7 @@ public class MongoUserMapper implements Mapper<User, UserResponse, UserRequest> 
         return request == null ? null : map(null, request.name, request.email, request.password, roles);
     }
 
-    private static User map(String id, String name, String email, String password, List<String> roles) {
+    private static User map(String id, String name, String email, String password, List<UserRole> roles) {
         var user = new User();
 
         user.setId(id);

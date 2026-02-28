@@ -1,8 +1,8 @@
-package com.example.demo.repository.interfaces;
+package com.example.demo.repository;
 
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Comment;
-import com.example.demo.model.Post;
+import com.example.demo.entity.Comment;
+import com.example.demo.entity.Post;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;

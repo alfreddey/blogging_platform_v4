@@ -1,4 +1,4 @@
-package com.example.demo.exceptionhandler;
+package com.example.demo.exception.handler;
 
 import com.example.demo.dto.ApiResponse;
 import com.example.demo.exception.InvalidIdException;

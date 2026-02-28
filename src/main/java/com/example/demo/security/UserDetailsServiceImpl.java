@@ -1,6 +1,6 @@
 package com.example.demo.security;
 
-import com.example.demo.repository.interfaces.UserRepository;
+import com.example.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,7 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         var authorities = user.getRoles().stream()
-                .map(SimpleGrantedAuthority::new)
+                .map(role -> new SimpleGrantedAuthority(role.toString()))
                 .toList();
 
         return User

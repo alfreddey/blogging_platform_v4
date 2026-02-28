@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.User;
-import com.example.demo.repository.interfaces.UserRepository;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.interfaces.UserService;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -28,6 +28,12 @@ public class MongoUserService implements UserService {
     @Override
     public User getById(String userId) {
         return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User with id: " + userId + " not found"));
+    }
+
+    @Cacheable
+    @Override
+    public User getByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User with email: " + email + " not found"));
     }
 
     @CachePut(key = "#result.id")

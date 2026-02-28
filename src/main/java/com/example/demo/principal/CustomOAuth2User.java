@@ -1,6 +1,6 @@
 package com.example.demo.principal;
 
-import com.example.demo.model.User;
+import com.example.demo.entity.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -47,7 +47,7 @@ public class CustomOAuth2User implements OidcUser {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return dbUser.getRoles().stream()
-                .map(SimpleGrantedAuthority::new)
+                .map(role -> new SimpleGrantedAuthority(role.toString()))
                 .collect(Collectors.toList());
     }
 

@@ -1,7 +1,7 @@
-package com.example.demo.repository.interfaces;
+package com.example.demo.repository;
 
-import com.example.demo.model.Post;
-import com.example.demo.repository.interfaces.custom.CustomPostRepository;
+import com.example.demo.entity.Post;
+import com.example.demo.repository.custom.CustomPostRepository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

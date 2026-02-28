@@ -1,6 +1,6 @@
 package com.example.demo.service.interfaces;
 
-import com.example.demo.model.Comment;
+import com.example.demo.entity.Comment;
 
 import java.util.List;
 

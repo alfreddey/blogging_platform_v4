@@ -15,10 +15,6 @@ public class PostRequest {
     @NotBlank(message = "Content is required")
     private String content;
 
-    @NotBlank(message = "Author email is required")
-    @Email(message = "Please provide a valid email address")
-    private String authorEmail;
-
     private List<String> tags;
     private List<String> comments;
     private Date createdAt;
