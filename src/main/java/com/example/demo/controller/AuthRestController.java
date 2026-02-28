@@ -92,22 +92,24 @@ public class AuthRestController {
 
     @PostMapping("/admin/login")
     public ApiResponse<String> loginAdmin(@Valid @RequestBody UserRequest request) {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            request.getEmail(), request.getPassword()
-                    )
-            );
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(), request.getPassword()
+                )
+        );
 
-            var userDetails = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+        var userDetails = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
 
-            assert userDetails != null;
-            String token = jwtUtils.generateToken(userDetails.getUsername(), UserRole.ROLE_ADMIN);
+        assert userDetails != null;
 
-            return new ApiResponse<>(HttpStatus.OK, "Login successful", token);
-        } catch (AuthenticationException ex) {
-            return new ApiResponse<>(HttpStatus.UNAUTHORIZED, "Invalid email or password", null);
-        }
+        userDetails.getAuthorities().stream()
+                .filter(auth -> auth.getAuthority().equals(UserRole.ROLE_ADMIN.toString()))
+                .findFirst()
+                .orElseThrow(() -> new AuthenticationException("User does not have admin privileges") {});
+
+        String token = jwtUtils.generateToken(userDetails.getUsername(), UserRole.ROLE_ADMIN);
+
+        return new ApiResponse<>(HttpStatus.OK, "Login successful", token);
     }
 
     @PostMapping("/api/auth/logout")
